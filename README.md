@@ -1,10 +1,10 @@
 **Házi feladat**
 
-Csapatnév:
+Csapatnév: Javan't
 
 Csapattagok Neptun kóddal:
 - Kerek Dominik (ZZSE8C)
-- Minta Mókus (ABC123)
+- Szigeti Donát (NIIIIG)
 - Minta Mókus (ABC123)
 
 Bemutató videó URL: 
