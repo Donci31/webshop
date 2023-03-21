@@ -3,7 +3,7 @@
 Csapatnév:
 
 Csapattagok Neptun kóddal:
-- Minta Mókus (ABC123)
+- Kerek Dominik (ZZSE8C)
 - Minta Mókus (ABC123)
 - Minta Mókus (ABC123)
 
