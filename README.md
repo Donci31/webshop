@@ -6,7 +6,7 @@ Csapattagok Neptun kóddal:
 
 - Kerek Dominik (ZZSE8C)
 - Szigeti Donát (NIIIIG)
-- Sisák Botond (ABC123)
+- Sisák Botond (G86ODK)
 
 Bemutató videó URL:
 (Ugye minden olyan dolog szerepel benne a kiírásnak megfelelően, amire pontot szeretnétek kapni?)
