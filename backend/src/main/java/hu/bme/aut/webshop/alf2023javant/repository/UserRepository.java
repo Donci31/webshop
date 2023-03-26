@@ -1,11 +1,8 @@
 package hu.bme.aut.webshop.alf2023javant.repository;
 
-import hu.bme.aut.webshop.alf2023javant.model.UserEntity;
+import hu.bme.aut.webshop.alf2023javant.model.MyUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    Optional<UserEntity> findByUsername(String username);
-    Boolean existsByUsername(String username);
+public interface UserRepository extends JpaRepository<MyUser, Long> {
+    MyUser findByUsername(String username);
 }
