@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<MyUser> optUser = userRepository.findByUsername(username);
+        Optional<MyUser> optUser = userRepository.findByEmail(username);
 
         if (optUser.isEmpty()) {
             throw new UsernameNotFoundException("User not found!");
@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         MyUser user = optUser.get();
 
-        return new User(user.getUsername(), user.getPassword(), Collections.singleton(new SimpleGrantedAuthority(user.getRole())));
+        return new User(user.getEmail(), user.getPassword(), Collections.singleton(new SimpleGrantedAuthority(user.getRole())));
     }
 
 }

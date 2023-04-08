@@ -24,7 +24,7 @@ public class SecurityConfig {
                                 .hasAnyAuthority("USER")
                                 .requestMatchers("/admin")
                                 .hasAnyAuthority("ADMIN")
-                                .anyRequest().denyAll()
+                                .anyRequest().permitAll()
                 )
                 .httpBasic();
 
