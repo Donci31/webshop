@@ -29,7 +29,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         MyUser user = optUser.get();
 
-        return new User(user.getEmail(), user.getPassword(), Collections.singleton(new SimpleGrantedAuthority(user.getRole())));
+        return new User(
+                user.getEmail(),
+                user.getPassword(),
+                Collections.singleton(new SimpleGrantedAuthority(user.getRole().name()))
+        );
     }
 
 }
