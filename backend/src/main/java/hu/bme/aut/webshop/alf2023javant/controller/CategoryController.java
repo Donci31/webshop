@@ -1,7 +1,7 @@
 package hu.bme.aut.webshop.alf2023javant.controller;
 
-import hu.bme.aut.webshop.alf2023javant.model.Category;
-import hu.bme.aut.webshop.alf2023javant.model.CategoryDto;
+import hu.bme.aut.webshop.alf2023javant.entity.Category;
+import hu.bme.aut.webshop.alf2023javant.dto.CategoryDto;
 import hu.bme.aut.webshop.alf2023javant.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

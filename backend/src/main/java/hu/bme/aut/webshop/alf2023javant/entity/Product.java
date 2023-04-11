@@ -1,14 +1,14 @@
-package hu.bme.aut.webshop.alf2023javant.model;
+package hu.bme.aut.webshop.alf2023javant.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "category")
+@Table(name = "product")
 @Data
 @NoArgsConstructor
-public class Category {
+public class Product {
     @Id
     @GeneratedValue
     private Long id;
@@ -16,4 +16,9 @@ public class Category {
     private String name;
 
     private String description;
+
+    private Integer price;
+
+    @ManyToOne
+    private Category category;
 }

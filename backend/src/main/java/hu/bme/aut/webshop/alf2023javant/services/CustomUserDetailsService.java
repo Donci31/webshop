@@ -1,6 +1,6 @@
 package hu.bme.aut.webshop.alf2023javant.services;
 
-import hu.bme.aut.webshop.alf2023javant.model.MyUser;
+import hu.bme.aut.webshop.alf2023javant.entity.MyUser;
 import hu.bme.aut.webshop.alf2023javant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

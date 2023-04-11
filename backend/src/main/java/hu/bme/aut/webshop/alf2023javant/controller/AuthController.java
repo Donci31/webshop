@@ -1,10 +1,10 @@
 package hu.bme.aut.webshop.alf2023javant.controller;
 
 
-import hu.bme.aut.webshop.alf2023javant.model.LoginDto;
-import hu.bme.aut.webshop.alf2023javant.model.MyUser;
-import hu.bme.aut.webshop.alf2023javant.model.Role;
-import hu.bme.aut.webshop.alf2023javant.model.SignUpDto;
+import hu.bme.aut.webshop.alf2023javant.dto.LoginDto;
+import hu.bme.aut.webshop.alf2023javant.entity.MyUser;
+import hu.bme.aut.webshop.alf2023javant.entity.Role;
+import hu.bme.aut.webshop.alf2023javant.dto.SignUpDto;
 import hu.bme.aut.webshop.alf2023javant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

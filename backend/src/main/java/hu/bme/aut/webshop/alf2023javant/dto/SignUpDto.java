@@ -1,4 +1,4 @@
-package hu.bme.aut.webshop.alf2023javant.model;
+package hu.bme.aut.webshop.alf2023javant.dto;
 
 import lombok.Data;
 
