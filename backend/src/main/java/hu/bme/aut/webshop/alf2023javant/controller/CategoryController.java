@@ -2,6 +2,7 @@ package hu.bme.aut.webshop.alf2023javant.controller;
 
 import hu.bme.aut.webshop.alf2023javant.entity.Category;
 import hu.bme.aut.webshop.alf2023javant.dto.CategoryDto;
+import hu.bme.aut.webshop.alf2023javant.entity.Product;
 import hu.bme.aut.webshop.alf2023javant.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,10 +26,10 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     ResponseEntity<Category> getProductsById(@PathVariable Long id) {
-        Optional<Category> optProduct = categoryRepository.findById(id);
-        return optProduct
+        Optional<Category> optCategory = categoryRepository.findById(id);
+        return optCategory
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
@@ -47,7 +48,7 @@ public class CategoryController {
         Optional<Category> optCategory = categoryRepository.findById(id);
 
         if (optCategory.isEmpty())
-            return new ResponseEntity<>("No such category exist!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("No such category exist!", HttpStatus.NOT_FOUND);
 
         Category category = optCategory.get();
         category.setName(categoryDto.getName());
@@ -56,5 +57,13 @@ public class CategoryController {
         categoryRepository.save(category);
 
         return new ResponseEntity<>("Category updated!", HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/products")
+    ResponseEntity<List<Product>> getProductsByCategory(@PathVariable Long id) {
+        Optional<Category> optCategory = categoryRepository.findById(id);
+        return optCategory
+                .map(value -> new ResponseEntity<>(value.getProducts(), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 }
