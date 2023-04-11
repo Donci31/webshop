@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/products")
 public class ProductController {
 
     @Autowired
@@ -22,12 +22,12 @@ public class ProductController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @GetMapping("/products")
+    @GetMapping
     ResponseEntity<List<Product>> getProducts() {
         return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<Product> getProductsById(@PathVariable Long id) {
         Optional<Product> optProduct = productRepository.findById(id);
         return optProduct
@@ -35,7 +35,7 @@ public class ProductController {
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
 
-    @PostMapping("/products")
+    @PostMapping
     ResponseEntity<String> createProduct(@RequestBody ProductDto productDto) {
 
         Product product = new Product();
@@ -48,7 +48,7 @@ public class ProductController {
         return new ResponseEntity<>("Product saved to database!", HttpStatus.OK);
     }
 
-    @PutMapping("/products/{id}")
+    @PutMapping("/{id}")
     ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto) {
         Optional<Product> optProduct = productRepository.findById(id);
 

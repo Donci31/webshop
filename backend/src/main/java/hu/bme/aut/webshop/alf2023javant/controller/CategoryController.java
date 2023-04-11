@@ -12,18 +12,18 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     @Autowired
     CategoryRepository categoryRepository;
 
-    @GetMapping("/categories")
+    @GetMapping
     ResponseEntity<List<Category>> getProducts() {
         return new ResponseEntity<>(categoryRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/categories/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<Category> getProductsById(@PathVariable Long id) {
         Optional<Category> optProduct = categoryRepository.findById(id);
         return optProduct
@@ -31,7 +31,7 @@ public class CategoryController {
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.BAD_REQUEST));
     }
 
-    @PostMapping("/categories")
+    @PostMapping
     ResponseEntity<String> createProduct(@RequestBody CategoryDto categoryDto) {
 
         Category category = new Category();
@@ -42,7 +42,7 @@ public class CategoryController {
         return new ResponseEntity<>("Category saved to database!", HttpStatus.OK);
     }
 
-    @PutMapping("/categories/{id}")
+    @PutMapping("/{id}")
     ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
         Optional<Category> optCategory = categoryRepository.findById(id);
 
