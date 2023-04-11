@@ -8,7 +8,7 @@ public class ProductDto {
 
     private String description;
 
-    private int price;
+    private Integer price;
 
-    private int categoryId;
+    private Integer categoryId;
 }

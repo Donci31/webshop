@@ -24,7 +24,7 @@ public class ProductsController {
     }
 
     @GetMapping("/products/{id}")
-    ResponseEntity<Product> getProductsById(@PathVariable long id) {
+    ResponseEntity<Product> getProductsById(@PathVariable Long id) {
         Optional<Product> optProduct = productRepository.findById(id);
         return optProduct
                 .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -45,7 +45,7 @@ public class ProductsController {
     }
 
     @PutMapping("/products/{id}")
-    ResponseEntity<String> updateProduct(@PathVariable long id, @RequestBody ProductDto productDto) {
+    ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto) {
         Optional<Product> optProduct = productRepository.findById(id);
 
         if (optProduct.isEmpty())
