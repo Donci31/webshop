@@ -1,4 +1,4 @@
-package hu.bme.aut.webshop.alf2023javant.services;
+package hu.bme.aut.webshop.alf2023javant.service;
 
 import hu.bme.aut.webshop.alf2023javant.entity.MyUser;
 import hu.bme.aut.webshop.alf2023javant.repository.UserRepository;
