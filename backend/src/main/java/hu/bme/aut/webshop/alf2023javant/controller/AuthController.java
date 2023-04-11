@@ -33,7 +33,7 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
-    public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto){
+    public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto) {
 
         if(!userRepository.existsByEmail(loginDto.getEmail())){
             return new ResponseEntity<>("No such user!", HttpStatus.UNAUTHORIZED);
@@ -49,7 +49,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody SignUpDto signUpDto){
+    public ResponseEntity<String> registerUser(@RequestBody SignUpDto signUpDto) {
 
         if(userRepository.existsByEmail(signUpDto.getEmail())){
             return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
