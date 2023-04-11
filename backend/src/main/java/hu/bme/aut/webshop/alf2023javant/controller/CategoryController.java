@@ -28,8 +28,8 @@ public class CategoryController {
     ResponseEntity<Category> getProductsById(@PathVariable Long id) {
         Optional<Category> optCategory = categoryRepository.findById(id);
         return optCategory
-                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+                .map(category -> new ResponseEntity<>(category, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
@@ -48,7 +48,7 @@ public class CategoryController {
         Optional<Category> optCategory = categoryRepository.findById(id);
 
         if (optCategory.isEmpty())
-            return new ResponseEntity<>("No such category exist!", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         Category category = optCategory.get();
         category.setName(categoryDto.getName());
@@ -63,7 +63,7 @@ public class CategoryController {
     ResponseEntity<List<Product>> getProductsByCategory(@PathVariable Long id) {
         Optional<Category> optCategory = categoryRepository.findById(id);
         return optCategory
-                .map(value -> new ResponseEntity<>(value.getProducts(), HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+                .map(category -> new ResponseEntity<>(category.getProducts(), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

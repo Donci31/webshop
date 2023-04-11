@@ -31,8 +31,8 @@ public class ProductController {
     ResponseEntity<Product> getProductsById(@PathVariable Long id) {
         Optional<Product> optProduct = productRepository.findById(id);
         return optProduct
-                .map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+                .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
@@ -53,7 +53,7 @@ public class ProductController {
         Optional<Product> optProduct = productRepository.findById(id);
 
         if (optProduct.isEmpty())
-            return new ResponseEntity<>("No such product exist!", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         Product product = optProduct.get();
         product.setName(productDto.getName());
