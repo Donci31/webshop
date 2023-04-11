@@ -2,6 +2,7 @@ package hu.bme.aut.webshop.alf2023javant.controller;
 
 import hu.bme.aut.webshop.alf2023javant.model.Product;
 import hu.bme.aut.webshop.alf2023javant.model.ProductDto;
+import hu.bme.aut.webshop.alf2023javant.repository.CategoryRepository;
 import hu.bme.aut.webshop.alf2023javant.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +14,13 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-public class ProductsController {
+public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping("/products")
     ResponseEntity<List<Product>> getProducts() {
@@ -38,7 +42,7 @@ public class ProductsController {
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setPrice(productDto.getPrice());
-
+        product.setCategory(categoryRepository.getReferenceById(productDto.getCategoryId()));
         productRepository.save(product);
 
         return new ResponseEntity<>("Product saved to database!", HttpStatus.OK);
@@ -55,6 +59,7 @@ public class ProductsController {
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setPrice(productDto.getPrice());
+        product.setCategory(categoryRepository.getReferenceById(productDto.getCategoryId()));
 
         productRepository.save(product);
 
