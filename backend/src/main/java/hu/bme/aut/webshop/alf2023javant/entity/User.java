@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 @Data
 @NoArgsConstructor
-public class MyUser {
+public class User {
     @Id
     @GeneratedValue
     private Long id;

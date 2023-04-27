@@ -23,6 +23,7 @@ public class ProductController {
     CategoryRepository categoryRepository;
 
     @GetMapping
+    @CrossOrigin
     ResponseEntity<List<Product>> getProducts() {
         return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
     }

@@ -9,5 +9,4 @@ public class Alf2023JavanTApplication {
     public static void main(String[] args) {
         SpringApplication.run(Alf2023JavanTApplication.class, args);
     }
-
 }
