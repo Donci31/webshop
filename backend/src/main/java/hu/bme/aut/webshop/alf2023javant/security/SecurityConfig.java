@@ -1,5 +1,7 @@
 package hu.bme.aut.webshop.alf2023javant.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +23,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
+
     @Autowired
     UserDetailsService userDetailsService;
 
@@ -34,11 +38,13 @@ public class SecurityConfig {
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
 
+        logger.debug("DaoAuthenticationProvider built");
         return authProvider;
     }
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
+        logger.debug("AuthTokenFilter built");
         return new AuthTokenFilter();
     }
 
@@ -55,12 +61,15 @@ public class SecurityConfig {
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
+        logger.debug("SecurityFilterChain built");
         return http.build();
     }
 
     @Bean
     AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration) throws Exception {
+
+        logger.debug("AuthenticationManager built");
         return authenticationConfiguration.getAuthenticationManager();
     }
 

@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
+
 	@Autowired
 	private JwtUtils jwtUtils;
 
@@ -42,6 +43,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 			logger.error("Cannot set user authentication: {}", e);
 		}
 
+		logger.info("Request: " + request.getRequestURI());
 		filterChain.doFilter(request, response);
 	}
 
@@ -49,6 +51,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 		String headerAuth = request.getHeader("Authorization");
 
 		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+
+			logger.info("Token: " + headerAuth.substring(7, headerAuth.length()));
 			return headerAuth.substring(7, headerAuth.length());
 		}
 

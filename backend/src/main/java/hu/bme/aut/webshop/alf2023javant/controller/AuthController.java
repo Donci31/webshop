@@ -7,6 +7,9 @@ import hu.bme.aut.webshop.alf2023javant.dto.SignUpDto;
 import hu.bme.aut.webshop.alf2023javant.repository.UserRepository;
 import hu.bme.aut.webshop.alf2023javant.security.JwtUtils;
 
+import hu.bme.aut.webshop.alf2023javant.service.CustomUserDetailsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class AuthController {
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     public class ResponseTransferObject {
         private String message;
@@ -33,11 +37,13 @@ public class AuthController {
         public ResponseTransferObject(String message) {
             this.message = message;
             this.token = null;
+            logger.info("ResponseTransferObject created: " + message);
         }
 
         public ResponseTransferObject(String message, String token) {
             this.message = message;
             this.token = token;
+            logger.info("ResponseTransferObject created: " + message + " " + token);
         }
 
         public String getMessage() {
@@ -66,6 +72,7 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@RequestBody LoginDto loginDto) {
 
         if (!userRepository.existsByEmail(loginDto.getEmail())) {
+            logger.info("No such user!");
             return new ResponseEntity<ResponseTransferObject>(new ResponseTransferObject("No such user!"),
                     HttpStatus.UNAUTHORIZED);
         }
@@ -75,12 +82,15 @@ public class AuthController {
                             loginDto.getEmail(), loginDto.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtUtils.generateJwtToken(authentication);
+            logger.info("User logged in successfully!");
             return ResponseEntity.ok(new ResponseTransferObject("User logged in successfully!", jwt));
         } catch (BadCredentialsException e) {
+            logger.info("Incorrect password!");
             return new ResponseEntity<ResponseTransferObject>(
                     new ResponseTransferObject("Incorrect password!"),
                     HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {
+            logger.info("Something went wrong!");
             return new ResponseEntity<ResponseTransferObject>(
                     new ResponseTransferObject("Something went wrong!"),
                     HttpStatus.INTERNAL_SERVER_ERROR);
@@ -91,6 +101,7 @@ public class AuthController {
     public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto) {
 
         if (userRepository.existsByEmail(signUpDto.getEmail())) {
+            logger.info("Email is already taken!");
             return new ResponseEntity<>(new ResponseTransferObject("Email is already taken!"), HttpStatus.CONFLICT);
         }
 
@@ -102,6 +113,7 @@ public class AuthController {
 
         userRepository.save(user);
 
+        logger.info("User registered successfully!");
         return new ResponseEntity<>(new ResponseTransferObject("User registered successfully!"), HttpStatus.OK);
     }
 }
