@@ -12,5 +12,5 @@ public class OrderDto {
     private String shipping_address;
     private String comment;
     private Long user_id;
-    private List<OrderItemDto> orderItems;
+    private List<OrderItemDto> products;
 }
