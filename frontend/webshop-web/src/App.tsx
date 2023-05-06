@@ -1,10 +1,9 @@
-import { AuthContextProvider } from "./AuthContext"
+import { AuthContextProvider } from "./context/AuthContext"
 import { ThemeProvider, CssBaseline } from "@mui/material"
 import { RouterProvider } from "react-router-dom"
-import router from "./router"
+import router from "./components/router"
 import theme from "./theme"
-import Header from "./Header"
-import { CartContextProvider } from "./CartContext"
+import { CartContextProvider } from "./context/CartContext"
 
 const App = () => {
 	return (
@@ -12,7 +11,6 @@ const App = () => {
 			<CartContextProvider>
 				<ThemeProvider theme={theme}>
 					<CssBaseline />
-					<Header />
 					<RouterProvider router={router} />
 				</ThemeProvider>
 			</CartContextProvider>

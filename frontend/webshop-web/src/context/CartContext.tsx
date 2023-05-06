@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { PropsWithChildren, createContext, useCallback, useEffect, useState } from "react"
-import IProduct from "./types/IProduct"
+import IProduct from "../types/IProduct"
 
 interface ICartItem {
 	product: IProduct

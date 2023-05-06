@@ -1,6 +1,6 @@
-import ICategory from "./types/ICategory"
-import IOrder from "./types/IOrder"
-import IProduct from "./types/IProduct"
+import ICategory from "../types/ICategory"
+import IOrder from "../types/IOrder"
+import IProduct from "../types/IProduct"
 import { api } from "./api"
 
 const WebShopApi = {
@@ -10,7 +10,9 @@ const WebShopApi = {
 				email,
 				password,
 			}),
-		register: (email: string, password: string) => api.post("/register", { email, password }),
+		signUp: (email: string, password: string, name: string) =>
+			api.post<unknown, { message: string; token: string | null }>("/register", { email, password, name }),
+		profile: () => api.get<{ id: number; name: string; email: string }>("/profile"),
 	},
 	products: {
 		all: () => api.get<IProduct[]>("/products"),
