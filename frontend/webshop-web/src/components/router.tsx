@@ -4,6 +4,7 @@ import Logout from "../pages/Logout"
 import Home from "../pages/Home"
 import Root from "./Root"
 import Checkout from "../pages/Checkout"
+import CheckoutSuccess from "../pages/CheckoutSuccess"
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
 			{
 				path: "/logout",
 				element: <Logout />,
+			},
+			{
+				path: "/checkout/success",
+				element: <CheckoutSuccess />,
 			},
 			{
 				path: "/checkout",

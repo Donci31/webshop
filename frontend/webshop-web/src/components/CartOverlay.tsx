@@ -113,7 +113,7 @@ export const CartOverlay = ({ open, onClose }: CartOverlayProps) => {
 						to="/checkout"
 						onClick={onClose}
 					>
-						{auth.loggedIn ? "Checkout" : "Login or register to checkout"}
+						Checkout
 					</Button>
 				</Paper>
 			</ClickAwayListener>
