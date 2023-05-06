@@ -98,6 +98,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @CrossOrigin
     public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto) {
 
         if (userRepository.existsByEmail(signUpDto.getEmail())) {
@@ -106,14 +107,18 @@ public class AuthController {
         }
 
         User user = new User();
-        user.setUsername(signUpDto.getUsername());
         user.setEmail(signUpDto.getEmail());
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
+        user.setName(signUpDto.getName());
         user.setRole(Role.USER);
 
         userRepository.save(user);
 
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(signUpDto.getEmail(), signUpDto.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
         logger.info("User registered successfully!");
-        return new ResponseEntity<>(new ResponseTransferObject("User registered successfully!"), HttpStatus.OK);
+        return ResponseEntity.ok(new ResponseTransferObject("User registered successfully!", jwt));
     }
 }
