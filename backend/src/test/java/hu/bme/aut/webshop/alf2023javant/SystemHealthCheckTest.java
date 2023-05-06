@@ -6,14 +6,12 @@ import hu.bme.aut.webshop.alf2023javant.entity.User;
 import hu.bme.aut.webshop.alf2023javant.repository.CategoryRepository;
 import hu.bme.aut.webshop.alf2023javant.repository.ProductRepository;
 import hu.bme.aut.webshop.alf2023javant.repository.UserRepository;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 
 import java.util.Optional;
 
@@ -75,7 +73,7 @@ public class SystemHealthCheckTest {
 
         User data = new User();
 
-        data.setUsername("testUsername");
+        data.setName("testUsername");
         data.setEmail("testEmail");
         data.setPassword("testPassword");
         userRepository.save(data);
