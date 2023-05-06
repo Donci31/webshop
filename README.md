@@ -18,12 +18,12 @@ Alap feladatok (maximális kapható pontokkal):
 
 - [ ] 7p: Yocto projekt alapokon készített szerver vagy kliens (házi feladatonként egyszer)
 - [ ] 5p: Beágyazott Linux rendszerben (de nem Yocto alapokon) készített szerver vagy kliens (feladatonként egyszer).
-- [X] 7p: QML alapú grafikus felület (benne legalább egy grafikon vagy egyéb rajzolás, egy lista, valamint menü)
+- [ ] 7p: QML alapú grafikus felület (benne legalább egy grafikon vagy egyéb rajzolás, egy lista, valamint menü)
 - [X] 7p: REST API (benne új adat létrehozása, lekérdezés, adat módosítása, logikusan felépített URL-ekkel)
 - [X] 8p: Több felhasználó, az authentikáció és különböző szerepkörök támogatása.
 - [ ] 7p: Linux alatt saját, jól átgondolt kommunikációs protokoll implementálása.
 - [ ] 15p: Linux alatt eszközvezérlő készítése
-- [X] 5p: Aszinkron üzenetsorral kommunikáló szerverek (vagyis több backend komponens van).
+- [ ] 5p: Aszinkron üzenetsorral kommunikáló szerverek (vagyis több backend komponens van).
 - [X] 5p: Java Persistence API használata, legalább 5 osztállyal.
 - [X] 2p: Spring Data használata
 - [X] 3p: Függőséginjektálás Spring alapokon
@@ -38,13 +38,13 @@ Bónusz feladatok, melyek plusz utánajárást is igényelhetnek (maximális kap
 időben leadva legalább 30 pont összegyűlt):
 
 - [ ] 5p: Linux alatt telepítő csomag készítése
-- [ ] 5p: Időzített taskok a backendben.
+- [X] 5p: Időzített taskok a backendben.
 - [ ] 5p: Linux alatt megszakítás kezelő készítése
 - [X] 5p: E-mail küldés a backendben.
 - [ ] 3-10p: Jelentős automatikus teszt lefedettség, lefedettségtől függően pontozva
 - [ ] 3p: QRC mechanizmus használata nem QML fájlok tárolására és elérésére.
 - [ ] 3p: Saját fejlesztésű dinamikusan linkelt könyvtár használata.
-- [ ] 8p: Induláskor lefutó öntesztelő funkció megvalósítása, mely a rendszer minden komponensének elérhetőségét és
+- [X] 8p: Induláskor lefutó öntesztelő funkció megvalósítása, mely a rendszer minden komponensének elérhetőségét és
   alapvető funkcióinak működőképességét teszteli (pl. webes felületről egy adat elmentése adatbázisba, majd
   visszaolvasása, hardver periféria megszólítása, valamint a vastag kliensen a logba írás).
 
