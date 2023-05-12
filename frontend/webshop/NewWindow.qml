@@ -1,13 +1,12 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
-import "."
 
 Window {
-    width: 640
-    height: 480
+    width: 800
+    height: 600
     visible: true
-    title: qsTr("Új ablak")
+    title: qsTr("AlfWebshop @admin")
 
     function sendAuthenticatedRequest() {
         if (loginManager.getToken() === "") {
@@ -33,11 +32,18 @@ Window {
         xhr.send();
     }
 
-    Button {
-        text: qsTr("Küldj hitelesített kérést")
-        anchors.centerIn: parent
-        onClicked: {
-            sendAuthenticatedRequest();
+    MenuBar {
+        width: parent.width
+            Menu {
+                title: "Menü"
+                MenuItem {
+                    text: "Profil"
+                    onTriggered: console.log("Profil")
+                }
+                MenuItem {
+                    text: "Kijelentkezés"
+                    onTriggered: console.log("Kijelentkezés")
+                }
+            }
         }
-    }
 }
