@@ -10,6 +10,7 @@ import hu.bme.aut.webshop.alf2023javant.repository.OrderRepository;
 import hu.bme.aut.webshop.alf2023javant.repository.ProductRepository;
 import hu.bme.aut.webshop.alf2023javant.repository.UserRepository;
 import hu.bme.aut.webshop.alf2023javant.service.EmailSenderService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class OrderController {
 
     @PostMapping
     @CrossOrigin
-    public ResponseEntity<?> createOrder(@RequestBody OrderDto orderDto) {
+    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDto orderDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Optional<User> user = userRepository.findByEmail(username);

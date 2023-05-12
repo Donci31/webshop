@@ -4,6 +4,7 @@ import hu.bme.aut.webshop.alf2023javant.entity.Category;
 import hu.bme.aut.webshop.alf2023javant.dto.CategoryDto;
 import hu.bme.aut.webshop.alf2023javant.entity.Product;
 import hu.bme.aut.webshop.alf2023javant.repository.CategoryRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    ResponseEntity<String> createProduct(@RequestBody CategoryDto categoryDto) {
+    ResponseEntity<String> createProduct(@Valid @RequestBody CategoryDto categoryDto) {
 
         Category category = new Category();
         category.setName(categoryDto.getName());
@@ -44,7 +45,7 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
+    ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody CategoryDto categoryDto) {
         Optional<Category> optCategory = categoryRepository.findById(id);
 
         if (optCategory.isEmpty())

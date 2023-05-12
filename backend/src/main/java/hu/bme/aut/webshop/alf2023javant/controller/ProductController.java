@@ -4,6 +4,7 @@ import hu.bme.aut.webshop.alf2023javant.entity.Product;
 import hu.bme.aut.webshop.alf2023javant.dto.ProductDto;
 import hu.bme.aut.webshop.alf2023javant.repository.CategoryRepository;
 import hu.bme.aut.webshop.alf2023javant.repository.ProductRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping
-    ResponseEntity<String> createProduct(@RequestBody ProductDto productDto) {
+    ResponseEntity<String> createProduct(@Valid @RequestBody ProductDto productDto) {
 
         Product product = new Product();
         product.setName(productDto.getName());
@@ -50,7 +51,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto) {
+    ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDto productDto) {
         Optional<Product> optProduct = productRepository.findById(id);
 
         if (optProduct.isEmpty())

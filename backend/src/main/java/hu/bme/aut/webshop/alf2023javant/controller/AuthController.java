@@ -2,12 +2,11 @@ package hu.bme.aut.webshop.alf2023javant.controller;
 
 import hu.bme.aut.webshop.alf2023javant.dto.LoginDto;
 import hu.bme.aut.webshop.alf2023javant.entity.User;
-import hu.bme.aut.webshop.alf2023javant.entity.Role;
 import hu.bme.aut.webshop.alf2023javant.dto.SignUpDto;
 import hu.bme.aut.webshop.alf2023javant.repository.UserRepository;
 import hu.bme.aut.webshop.alf2023javant.security.JwtUtils;
 
-import hu.bme.aut.webshop.alf2023javant.service.CustomUserDetailsService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +68,7 @@ public class AuthController {
 
     @PostMapping("/login")
     @CrossOrigin
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDto loginDto) {
 
         if (!userRepository.existsByEmail(loginDto.getEmail())) {
             logger.info("No such user!");
@@ -99,7 +98,7 @@ public class AuthController {
 
     @PostMapping("/register")
     @CrossOrigin
-    public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpDto signUpDto) {
 
         if (userRepository.existsByEmail(signUpDto.getEmail())) {
             logger.info("Email is already taken!");
@@ -110,7 +109,7 @@ public class AuthController {
         user.setEmail(signUpDto.getEmail());
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
         user.setName(signUpDto.getName());
-        user.setRole(Role.USER);
+        user.setRole(signUpDto.getRole());
 
         userRepository.save(user);
 
