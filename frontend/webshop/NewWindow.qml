@@ -10,13 +10,13 @@ Window {
     title: qsTr("Új ablak")
 
     function sendAuthenticatedRequest() {
-        if (GlobalVariables.jwtToken === "") {
+        if (loginManager.getToken() === "") {
             console.log("A JWT token nincs beállítva.");
             return;
         }
 
         var xhr = new XMLHttpRequest();
-        var url = "http://localhost:8080/api/profile";
+        var url = "http://localhost:8080/api/products";
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -29,7 +29,7 @@ Window {
         }
 
         xhr.open("GET", url, true);
-        xhr.setRequestHeader("Authorization", "Bearer " + GlobalVariables.jwtToken);
+        xhr.setRequestHeader("Authorization", "Bearer " + loginManager.getToken());
         xhr.send();
     }
 
