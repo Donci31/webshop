@@ -4,7 +4,7 @@ import QtQuick.Controls 2.15
 
 
 Window {
-    id: loginWindow
+    id: mainWindow
     width: 400
     height: 300
     visible: true
@@ -12,19 +12,17 @@ Window {
 
 
 
-    function openNewWindow() {
+    function openNewWindowAndCloseCurrent() {
             var component = Qt.createComponent("NewWindow.qml");
             if (component.status === Component.Ready) {
-                var newWindow = component.createObject(loginWindow);
-                if (newWindow) {
-                    newWindow.show();
-                    //loginWindow.close();
-                } else {
-                    console.log("Hiba az új ablak létrehozásakor:", component.errorString());
-                }
+                var window = component.createObject(mainWindow);
+                window.show();
             } else {
-                console.log("Hiba az új ablak betöltésekor:", component.errorString());
+                console.log("Error creating object:", component.errorString());
             }
+
+            // Bezárja az aktuális ablakot
+            mainWindow.visible = false;
         }
 
     function handleLogin() {
@@ -45,7 +43,7 @@ Window {
                     } else {
                         console.log("A válaszban nem található JWT token.");
                     }
-                    openNewWindow();
+                    openNewWindowAndCloseCurrent();
                 } else {
                     console.log("Sikertelen bejelentkezés:", xhr.status, xhr.statusText);
                 }
@@ -72,6 +70,7 @@ Window {
             id: emailField
             width: 250
             placeholderText: qsTr("test@test.com")
+            text: "admin@test.com"
             inputMethodHints: Qt.ImhEmailCharactersOnly
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -86,7 +85,8 @@ Window {
             id: passwordField
             width: 250
             placeholderText: qsTr("password")
-            echoMode: TextInput.Password
+            text: "admin"
+            echoMode: TextInput.Password            
             inputMethodHints: Qt.ImhHiddenText | Qt.ImhSensitiveData | Qt.ImhNoAutoUppercase
             anchors.horizontalCenter: parent.horizontalCenter
 
@@ -99,10 +99,11 @@ Window {
             id: loginButton
             text: qsTr("Bejelentkezés")
             width: 250
+            anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
                 handleLogin()
             }
-            anchors.horizontalCenter: parent.horizontalCenter
+
         }
     }
 }
