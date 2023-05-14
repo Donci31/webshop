@@ -18,19 +18,19 @@ import java.util.Optional;
 public class ProductController {
 
     @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
     @Autowired
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @GetMapping
     @CrossOrigin
-    ResponseEntity<List<Product>> getProducts() {
+    public ResponseEntity<List<Product>> getProducts() {
         return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Product> getProductsById(@PathVariable Long id) {
+    public ResponseEntity<Product> getProductsById(@PathVariable Long id) {
         Optional<Product> optProduct = productRepository.findById(id);
         return optProduct
                 .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping
-    ResponseEntity<String> createProduct(@Valid @RequestBody ProductDto productDto) {
+    public ResponseEntity<String> createProduct(@Valid @RequestBody ProductDto productDto) {
 
         Product product = new Product();
         product.setName(productDto.getName());
@@ -51,7 +51,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDto productDto) {
+    public ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDto productDto) {
         Optional<Product> optProduct = productRepository.findById(id);
 
         if (optProduct.isEmpty())

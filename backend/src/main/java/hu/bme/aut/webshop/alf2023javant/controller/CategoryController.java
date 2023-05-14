@@ -18,15 +18,15 @@ import java.util.Optional;
 public class CategoryController {
 
     @Autowired
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @GetMapping
-    ResponseEntity<List<Category>> getProducts() {
+    public ResponseEntity<List<Category>> getProducts() {
         return new ResponseEntity<>(categoryRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Category> getProductsById(@PathVariable Long id) {
+    public ResponseEntity<Category> getProductsById(@PathVariable Long id) {
         Optional<Category> optCategory = categoryRepository.findById(id);
         return optCategory
                 .map(category -> new ResponseEntity<>(category, HttpStatus.OK))
@@ -34,7 +34,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    ResponseEntity<String> createProduct(@Valid @RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<String> createProduct(@Valid @RequestBody CategoryDto categoryDto) {
 
         Category category = new Category();
         category.setName(categoryDto.getName());
@@ -45,7 +45,7 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody CategoryDto categoryDto) {
         Optional<Category> optCategory = categoryRepository.findById(id);
 
         if (optCategory.isEmpty())
@@ -61,7 +61,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}/products")
-    ResponseEntity<List<Product>> getProductsByCategory(@PathVariable Long id) {
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable Long id) {
         Optional<Category> optCategory = categoryRepository.findById(id);
         return optCategory
                 .map(category -> new ResponseEntity<>(category.getProducts(), HttpStatus.OK))
