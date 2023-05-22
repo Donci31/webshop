@@ -15,6 +15,7 @@ public:
     Q_INVOKABLE void storeToken(const QString &token);
 
     Q_INVOKABLE QString getToken();
+    Q_INVOKABLE void deleteToken();
 
 private:
     QString jwtToken;

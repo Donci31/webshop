@@ -13,3 +13,8 @@ QString LoginManager::getToken()
 {
     return jwtToken;
 }
+
+void LoginManager::deleteToken()
+{
+    jwtToken = "-";
+}
