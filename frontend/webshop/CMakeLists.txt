@@ -4,7 +4,7 @@ project(webshop VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Quick Charts)
 
 qt_standard_project_setup()
 
@@ -30,6 +30,7 @@ set_target_properties(appwebshop PROPERTIES
 
 target_link_libraries(appwebshop
     PRIVATE Qt6::Quick
+    Qt6::Charts
 )
 
 install(TARGETS appwebshop
