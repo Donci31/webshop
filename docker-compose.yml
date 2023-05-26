@@ -1,7 +1,7 @@
-version: '3.9'
+version: '3'
 services:
   backend:
-    image: backend:latest
+    build: ./backend/
     ports:
       - 8080:8080
     depends_on:
@@ -14,7 +14,7 @@ services:
       - smtp_credentials.env
 
   frontend:
-    image: frontend:latest
+    build: ./frontend/webshop-web/
     ports:
       - 5173:5173
     depends_on:
