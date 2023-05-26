@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react"
-import WebShopApi from "../api/WebShopApi"
-import IProduct from "../types/IProduct"
-import ProductCard from "../components/ProductCard"
-import { Box, Grid, Paper, Typography } from "@mui/material"
+import { Paper, Typography } from "@mui/material"
 
 const CheckoutSuccess = () => {
 	return (

@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react"
 import useAuth from "../hooks/useAuth"
-import { Alert, AlertTitle, Button, Stack, TextField, Typography } from "@mui/material"
+import { Alert, AlertTitle, Button, Stack, TextField } from "@mui/material"
 import { AxiosError } from "axios"
 
 export const SignUpForm = () => {

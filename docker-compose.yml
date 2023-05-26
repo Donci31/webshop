@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  backend:
+    image: backend:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+    environment:
+      - DB_URL=jdbc:postgresql://database:5432/mydb
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - SMTP_EMAIL=szigetidonat@gmail.com
+      - SMTP_PASSWORD=mqywijelonfdxdlp
+
+  frontend:
+    image: frontend:latest
+    ports:
+      - 5173:5173
+    depends_on:
+      - backend
+
+  database:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+

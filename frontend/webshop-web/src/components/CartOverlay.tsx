@@ -1,7 +1,6 @@
 import { Typography, Button, Box, Paper, ClickAwayListener, Divider, Stack, IconButton } from "@mui/material"
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded"
 import useCart from "../hooks/useCart"
-import useAuth from "../hooks/useAuth"
 import currency from "../util/currency"
 import { Link } from "react-router-dom"
 
@@ -11,7 +10,6 @@ interface CartOverlayProps {
 }
 export const CartOverlay = ({ open, onClose }: CartOverlayProps) => {
 	const cart = useCart()
-	const auth = useAuth()
 	if (!open) {
 		return null
 	}

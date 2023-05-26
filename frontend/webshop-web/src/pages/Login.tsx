@@ -1,10 +1,7 @@
-import useAuth from "../hooks/useAuth"
-import { Navigate } from "react-router-dom"
 import { Dialog, Typography } from "@mui/material"
 import { LoginForm } from "../components/LoginForm"
 
 const Login = () => {
-	const auth = useAuth()
 	/*
 	if (auth.loggedIn) {
 		return <Navigate to="/" />
