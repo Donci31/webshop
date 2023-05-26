@@ -10,8 +10,8 @@ services:
       - DB_URL=jdbc:postgresql://database:5432/mydb
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
-      - SMTP_EMAIL=szigetidonat@gmail.com
-      - SMTP_PASSWORD=mqywijelonfdxdlp
+    env_file:
+      - smtp_credentials.env
 
   frontend:
     image: frontend:latest

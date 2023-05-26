@@ -1,10 +1,11 @@
-FROM openjdk:18
-
+FROM eclipse-temurin
 WORKDIR /app
-
-COPY ./target/alf2023-javan-t-0.0.1-SNAPSHOT.jar backend.jar
-
-EXPOSE 8080
-
-CMD ["java", "-jar", "backend.jar"]
+ 
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+ 
+COPY src ./src
+ 
+CMD ["./mvnw", "spring-boot:run"]
 
