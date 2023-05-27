@@ -4,7 +4,7 @@ import WebShopApi from "../api/WebShopApi"
 interface IAuthContext {
 	login: (email: string, password: string) => Promise<void>
 	logout: () => void
-	signUp: (email: string, password: string, name: string) => Promise<void>
+	signUp: (email: string, password: string, name: string, role: string) => Promise<void>
 	token: string | null
 	loggedIn: boolean
 	user: {
@@ -61,7 +61,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
 
 	const signUp = useCallback(async (email: string, password: string, name: string) => {
 		try {
-			const response = await WebShopApi.auth.signUp(email, password, name)
+			const response = await WebShopApi.auth.signUp(email, password, name, "USER")
 			if (response.token) {
 				setToken(response.token)
 			} else {

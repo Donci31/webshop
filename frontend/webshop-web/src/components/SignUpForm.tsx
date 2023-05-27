@@ -15,7 +15,7 @@ export const SignUpForm = () => {
 		e.preventDefault()
 		setError(null)
 		try {
-			await auth.signUp(email, password, name)
+			await auth.signUp(email, password, name, "USER")
 		} catch (e) {
 			console.log(e)
 			setError(e instanceof AxiosError ? e.response?.data?.message : "Unknown error")

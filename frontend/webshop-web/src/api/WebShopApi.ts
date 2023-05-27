@@ -10,8 +10,8 @@ const WebShopApi = {
 				email,
 				password,
 			}),
-		signUp: (email: string, password: string, name: string) =>
-			api.post<unknown, { message: string; token: string | null }>("/register", { email, password, name }),
+		signUp: (email: string, password: string, name: string, role: string) =>
+			api.post<unknown, { message: string; token: string | null }>("/register", { email, password, name, role }),
 		profile: () => api.get<{ id: number; name: string; email: string }>("/profile"),
 	},
 	products: {
