@@ -58,3 +58,22 @@ felhasználás.)
 - [ ] Igen, a szerzők megjelölésével
 - [X] Igen, névtelenül
 - [ ] Nem
+
+## Alkalmazás telepítése
+### Google app jelszó létrehozása
+Hozzunk létre egy app jelszót ez a [tutorial](https://support.google.com/mail/answer/185833) alapján.
+
+### smtp_credentials.env file létrehozása
+Hozzunk létre egy `smtp_credentials.env` fájlt, ami az alábbi struktúrával rendelkezik:
+```bash
+SMTP_EMAIL=email_cím
+SMTP_PASSWORD=smtp_jelszó
+```
+* Helyettesítsd az `email_cím`-et a google fiókhoz tartozó email címmel.
+* Helyettesítsd az `smtp_jelszó`-t a kapott 16 karaktere hosszú jelszóval.
+
+### Az alkalmazás futtatása
+Az alkalmazást a következő paranccsal lehet futtatni:
+```
+docker-compose up
+```
