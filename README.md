@@ -65,7 +65,7 @@ Hozzunk létre egy app jelszót ez a [tutorial](https://support.google.com/mail/
 
 ### smtp_credentials.env file létrehozása
 Hozzunk létre egy `smtp_credentials.env` fájlt, ami az alábbi struktúrával rendelkezik:
-```bash
+```
 SMTP_EMAIL=email_cím
 SMTP_PASSWORD=smtp_jelszó
 ```
